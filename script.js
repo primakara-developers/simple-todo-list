@@ -3,13 +3,14 @@ const key = "SIMPLE_TODO_LIST";
 const input = document.getElementById("input-feild");
 const activityContainer = document.querySelector(".list-activity");
 
-function removeData(value) {
+function removeData(todoId) {
   const tempTodo = [];
-  todo.forEach(function (el) {
-    if (el !== value) {
-      tempTodo.push(el);
+
+  for (let i = 0; i < todo.length; i++) {
+    if (i != todoId) {
+      tempTodo.push(todo[i]);
     }
-  });
+  }
   todo = tempTodo;
 
   useStorage("SET");
@@ -22,8 +23,16 @@ function getData() {
     activityContainer.innerHTML += `
       <div class="activity">
       <p>${i + 1}. ${el}</p>
-      <button onclick="removeData('${el}')">X</button>
+      <button class="del-btn" todoId="${i}">X</button>
     </div>`;
+  });
+
+  const buttons = activityContainer.querySelectorAll(".del-btn");
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function (e) {
+      const todoId = e.target.getAttribute("todoId");
+      removeData(todoId);
+    });
   });
 }
 
@@ -50,6 +59,4 @@ document.getElementById("save-btn").addEventListener("click", function () {
   getData();
 });
 
-if (todo !== null) {
-  useStorage("GET");
-}
+useStorage("GET");
