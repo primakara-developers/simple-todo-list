@@ -1,3 +1,4 @@
+import "./style/style.scss";
 import { accesStorage, getData, removeData, addData } from "./logic.js";
 
 window.addData = addData;
