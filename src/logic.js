@@ -47,3 +47,5 @@ function removeData(todoId) {
 
 if (accesStorage("GET") === null) accesStorage("SET", []);
 getData();
+
+export { accesStorage, getData, removeData, addData };
