@@ -3,11 +3,22 @@ const key = "SIMPLE_TODO_LIST";
 const input = document.getElementById("input-feild");
 const activityContainer = document.querySelector(".list-activity");
 
+function getData() {
+  activityContainer.innerHTML = "";
+  todo.forEach(function (data, i) {
+    activityContainer.innerHTML += `
+      <div class="activity">
+      <p>${i + 1}. ${data.todo}</p>
+      <button class="del-btn" onclick="removeData(${data.id})">X</button>
+    </div>`;
+  });
+}
+
 function removeData(todoId) {
   const tempTodo = [];
 
   for (let i = 0; i < todo.length; i++) {
-    if (i != todoId) {
+    if (todo[i].id != todoId) {
       tempTodo.push(todo[i]);
     }
   }
@@ -15,25 +26,6 @@ function removeData(todoId) {
 
   useStorage("SET");
   getData();
-}
-
-function getData() {
-  activityContainer.innerHTML = "";
-  todo.forEach(function (el, i) {
-    activityContainer.innerHTML += `
-      <div class="activity">
-      <p>${i + 1}. ${el}</p>
-      <button class="del-btn" todoId="${i}">X</button>
-    </div>`;
-  });
-
-  const buttons = activityContainer.querySelectorAll(".del-btn");
-  buttons.forEach(function (button) {
-    button.addEventListener("click", function (e) {
-      const todoId = e.target.getAttribute("todoId");
-      removeData(todoId);
-    });
-  });
 }
 
 function useStorage(mode) {
@@ -52,11 +44,10 @@ function useStorage(mode) {
   }
 }
 
-document.getElementById("save-btn").addEventListener("click", function () {
-  todo.push(input.value);
-
+function addData() {
+  todo.push({ id: Date.now(), todo: input.value });
   useStorage("SET");
   getData();
-});
+}
 
 useStorage("GET");
