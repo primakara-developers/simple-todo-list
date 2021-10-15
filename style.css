@@ -11,7 +11,11 @@ body {
 .background-gradient {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(to right, rgb(21, 21, 177), rgb(116, 16, 173));
+  background-image: linear-gradient(
+    to right,
+    rgb(21, 21, 177),
+    rgb(116, 16, 173)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,6 +58,7 @@ h5,
 
 .container-input button:hover {
   background-color: rgb(16, 16, 124);
+  cursor: pointer;
 }
 
 #input-feild {
@@ -97,6 +102,7 @@ h5,
 
 .list-activity .activity button:hover {
   font-weight: bold;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1900px) {

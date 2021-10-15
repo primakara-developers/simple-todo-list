@@ -1,10 +1,20 @@
-let todo = [];
 const key = "SIMPLE_TODO_LIST";
 const input = document.getElementById("input-feild");
 const activityContainer = document.querySelector(".list-activity");
 
+function accesStorage(action, todoData = null) {
+  if (action === "GET") {
+    return JSON.parse(localStorage.getItem(key));
+  } else if (action === "SET" && todoData !== null) {
+    localStorage.setItem(key, JSON.stringify(todoData));
+  }
+}
+
 function getData() {
   activityContainer.innerHTML = "";
+
+  const todo = accesStorage("GET");
+
   todo.forEach(function (data, i) {
     activityContainer.innerHTML += `
       <div class="activity">
@@ -14,40 +24,26 @@ function getData() {
   });
 }
 
+function addData() {
+  const todo = accesStorage("GET");
+  todo.push({ id: Date.now(), todo: input.value });
+  accesStorage("SET", todo);
+  getData();
+}
+
 function removeData(todoId) {
   const tempTodo = [];
+  const todo = accesStorage("GET");
 
-  for (let i = 0; i < todo.length; i++) {
-    if (todo[i].id != todoId) {
-      tempTodo.push(todo[i]);
+  todo.forEach((data) => {
+    if (data.id != todoId) {
+      tempTodo.push(data);
     }
-  }
-  todo = tempTodo;
+  });
 
-  useStorage("SET");
+  accesStorage("SET", tempTodo);
   getData();
 }
 
-function useStorage(mode) {
-  if (typeof localStorage !== undefined) {
-    switch (mode) {
-      case "SET":
-        localStorage.setItem(key, JSON.stringify(todo));
-        break;
-      case "GET":
-        if (localStorage.getItem(key) !== null) {
-          todo = JSON.parse(localStorage.getItem(key));
-        }
-        getData();
-        break;
-    }
-  }
-}
-
-function addData() {
-  todo.push({ id: Date.now(), todo: input.value });
-  useStorage("SET");
-  getData();
-}
-
-useStorage("GET");
+if (accesStorage("GET") === null) accesStorage("SET", []);
+getData();
