@@ -17,10 +17,34 @@ function getData() {
 
   todo.forEach(function (data, i) {
     activityContainer.innerHTML += `
-      <div class="activity">
+    <div class="activity">
       <p>${i + 1}. ${data.todo}</p>
-      <button class="del-btn" onclick="removeData(${data.id})">X</button>
+      <div class="container-btn">
+          <button class="del-btn" onclick="removeData(${data.id})">X</button>
+          <button class="edit-btn" onclick="editData(${data.id})">Edit</button>
+      </div>
     </div>`;
+  });
+}
+
+function editData(todoId) {
+  const displayPopup = document.querySelector(".popup-display");
+  const okBtn = document.getElementById("ok-btn");
+  const editInput = document.getElementById("edit-input");
+  const todo = accesStorage("GET");
+
+  displayPopup.style.display = "block";
+
+  okBtn.addEventListener("click", function () {
+    todo.forEach(function (data) {
+      if (data.id === todoId) {
+        data.todo = editInput.value;
+      }
+    });
+
+    accesStorage("SET", todo);
+    displayPopup.style.display = "none";
+    getData();
   });
 }
 
@@ -45,5 +69,8 @@ function removeData(todoId) {
   getData();
 }
 
-if (accesStorage("GET") === null) accesStorage("SET", []);
+if (accesStorage("GET") === null) {
+  accesStorage("SET", []);
+}
+
 getData();

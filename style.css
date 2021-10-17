@@ -11,11 +11,7 @@ body {
 .background-gradient {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-    to right,
-    rgb(21, 21, 177),
-    rgb(116, 16, 173)
-  );
+  background-image: linear-gradient(to right, rgb(21, 21, 177), rgb(116, 16, 173));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +61,7 @@ h5,
   width: 60%;
 }
 
-#save-btn {
+.container-input button {
   width: 30%;
 }
 
@@ -92,17 +88,70 @@ h5,
 }
 
 .list-activity .activity button {
-  padding: 5px;
+  padding: 5px 10px;
   border: none;
-  width: 25px;
   border-radius: 5px;
-  background-color: rgb(218, 61, 61);
   color: white;
+}
+
+.list-activity .activity button.del-btn {
+  background-color: red;
+}
+
+.list-activity .activity button.edit-btn {
+  background-color: green;
 }
 
 .list-activity .activity button:hover {
   font-weight: bold;
   cursor: pointer;
+}
+
+/* PopUp Box Style */
+.popup-display {
+  display: none;
+}
+
+.popup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.534);
+}
+
+.popup-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 65vw;
+  height: 150px;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.popup-box input {
+  padding: 10px;
+}
+
+.popup-box button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  background-color: rgb(20, 105, 161);
+  color: white;
+  font-weight: bold;
 }
 
 @media only screen and (min-width: 1900px) {

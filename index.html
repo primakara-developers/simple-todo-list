@@ -9,18 +9,28 @@
     <link rel="icon" href="./asset/pavicon.png" />
   </head>
   <body>
+    <!-- Pop Up Box -->
+    <div class="popup-display">
+      <div class="popup-container">
+        <div class="popup-box">
+          <p>Edit</p>
+          <div class="container-edit-input">
+            <input id="edit-input" type="text" placeholder="Change your activity here!" />
+            <button id="ok-btn">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- --- -->
+
     <div class="background-gradient">
       <div class="container-todo">
         <h5>Simple ToDo List</h5>
         <div class="container-input">
-          <input
-            id="input-feild"
-            type="text"
-            placeholder="Input your activity here!"
-          />
-          <button id="save-btn" onclick="addData()">Save</button>
+          <input id="input-feild" type="text" placeholder="Input your activity here!" />
+          <button onclick="addData()">Save</button>
         </div>
-        <div id="container-activity">
+        <div class="container-activity">
           <p><small>Upcoming</small></p>
           <div class="list-activity">
             <!-- <div class="activity">
