@@ -9,18 +9,42 @@
     <link rel="icon" href="./asset/pavicon.png" />
   </head>
   <body>
+    <!-- Modal -->
+    <div class="prompt-display">
+      <div class="prompt-container">
+        <h2>Edit</h2>
+        <div class="edit-input-container">
+          <input id="input-modal" type="text" placeholder="Edit your activity here!" />
+          <button id="ok-btn">Ok</button>
+        </div>
+        <span></span>
+        <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+    </div>
+    <!-- --- -->
+
+    <!-- Confirm -->
+    <div class="confirm-display">
+      <div class="confirm-container">
+        <h2>Are you sure?</h2>
+        <div class="button-container">
+          <button class="yes-btn">Yes</button>
+          <button class="no-btn">No</button>
+        </div>
+      </div>
+    </div>
+    <!-- --- -->
+
     <div class="background-gradient">
       <div class="container-todo">
         <h5>Simple ToDo List</h5>
         <div class="container-input">
-          <input
-            id="input-feild"
-            type="text"
-            placeholder="Input your activity here!"
-          />
-          <button id="save-btn" onclick="addData()">Save</button>
+          <input id="input-feild" type="text" placeholder="Input your activity here!" />
+          <button onclick="addData()">Save</button>
         </div>
-        <div id="container-activity">
+        <div class="container-activity">
           <p><small>Upcoming</small></p>
           <div class="list-activity">
             <!-- <div class="activity">
