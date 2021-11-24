@@ -1,3 +1,4 @@
 # simple-todo-list
 
-ToDo List with Local Storage exercise.
+Todo List with native JS and Local Storage exercise.
+Beginner 2 Primakara Developers
